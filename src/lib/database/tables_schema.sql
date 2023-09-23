@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS roles(
+	id INT,
+	description VARCHAR(255) NOT NULL
+
+	PRIMARY KEY id
+)

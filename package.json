@@ -21,5 +21,9 @@
     "husky": "^8.0.3",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
   }
 }
