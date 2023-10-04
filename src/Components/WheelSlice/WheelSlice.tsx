@@ -3,7 +3,7 @@ import './WheelSlice.scss';
 type WheelSliceProps = {
   nOfSlice: number;
 };
-const WheelSlice: React.FC<WheelSliceProps> = ({ nOfSlice }) => {
+function WheelSlice({ nOfSlice }: WheelSliceProps) {
   const slices = Array.from({ length: nOfSlice }, (_, index) => (
     <div
       className="slice"
@@ -13,5 +13,5 @@ const WheelSlice: React.FC<WheelSliceProps> = ({ nOfSlice }) => {
     </div>
   ));
   return slices;
-};
+}
 export default WheelSlice;
