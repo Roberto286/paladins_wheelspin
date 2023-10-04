@@ -1,11 +1,7 @@
-import { WheeleStructure } from "./Components/WheelStructure/WheeleStructure";
+import WheeleStructure from './Components/WheelStructure/WheeleStructure';
 
 function App() {
-  
-
-  return (
-    <WheeleStructure/>
-  )
+  return <WheeleStructure />;
 }
 
-export default App
+export default App;

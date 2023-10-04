@@ -9,6 +9,9 @@ body {
 	position: relative;
 	max-width: 800px;
 	margin: 2rem auto;
+	h1{
+		text-align: center;
+	}
 }
 
 .spinner-table {
@@ -113,3 +116,10 @@ body {
 	padding: 50px;
 }
 
+.display-container{
+	padding: 50px;
+	text-align: center;
+	span{
+		font-size: 36px;
+	}
+}

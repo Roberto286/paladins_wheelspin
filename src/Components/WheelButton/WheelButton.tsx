@@ -1,14 +1,25 @@
-import './WheelButton.scss'
-type WheelButton={
-  event:Function
-  isDisabled:boolean
-}
-export const WheelButton:React.FC<WheelButton> = ({event,isDisabled}) => {
+import './WheelButton.scss';
+
+type WheelButtonProps = {
+  event: () => void;
+  isDisabled: boolean;
+};
+function WheelButton({ event, isDisabled }: WheelButtonProps) {
   return (
     <div className="content-container">
       <div className="pre">
-        <button id="spin" disabled={isDisabled} onClick={()=>{event()}}>Spin</button>
+        <button
+          id="spin"
+          type="button"
+          disabled={isDisabled}
+          onClick={() => {
+            event();
+          }}
+        >
+          Spin
+        </button>
       </div>
     </div>
   );
-};
+}
+export default WheelButton;
