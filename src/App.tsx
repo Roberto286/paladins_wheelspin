@@ -1,7 +1,11 @@
-import './App.css';
+import { WheeleStructure } from "./Components/WheelStructure/WheeleStructure";
 
 function App() {
-  return <>hello world!</>;
+  
+
+  return (
+    <WheeleStructure/>
+  )
 }
 
-export default App;
+export default App

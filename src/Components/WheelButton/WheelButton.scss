@@ -1,0 +1,13 @@
+button {
+	background: #c27028;
+	border: 0;
+	padding: 15px 50px;
+	color: white;
+	position: absolute;
+	top: 50%;
+	margin-top: -20px;
+	right: 20%;
+    &:hover{
+        cursor: pointer;
+    }
+}
