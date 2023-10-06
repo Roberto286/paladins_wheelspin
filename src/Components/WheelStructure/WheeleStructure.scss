@@ -1,6 +1,5 @@
 @import '../../assets/saasConfig.scss';
 
-
 .container {
   position: relative;
   max-width: 800px;
@@ -23,7 +22,7 @@
         transition: all 5s ease-out;
         animation-fill-mode: forwards;
         animation-timing-function: linear;
-      
+
         &.spinning {
           animation-duration: 5s;
           animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
@@ -37,8 +36,7 @@
             }
           }
         }
-        
-      
+
         &:before {
           content: '';
           text-align: center;
@@ -65,14 +63,14 @@
       z-index: 500;
       display: block;
       top: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       transform-origin: center right;
       .pointer {
         z-index: 500;
         display: block;
         height: 30px;
         width: 50px;
-      
+
         &:before {
           content: '';
           display: block;
@@ -108,16 +106,3 @@
     font-size: 36px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
