@@ -2,8 +2,8 @@ export const numberOfSlices = 56;
 export const wheelRadius = 360;
 export const sliceSize = wheelRadius / numberOfSlices;
 
-export const createDynamicObject = (numProperties: number) => {
-  const dinamicObj = Object.fromEntries(Array.from({ length: numProperties }, (_, i) => [i + 1, numProperties - i]));
+export const createDynamicObject = () => {
+  const dinamicObj = Object.fromEntries(Array.from({ length: numberOfSlices }, (_, i) => [i + 1, numberOfSlices - i]));
   return dinamicObj;
 };
 

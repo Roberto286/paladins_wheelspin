@@ -4,7 +4,7 @@ import WheelSlice from '../WheelSlice/WheelSlice';
 import './WheeleStructure.scss';
 import { numberOfSlices, wheelRadius, prizeDisplay, createDynamicObject } from '../../Utils/Utils';
 
-function WheeleStructure() {
+function WheelStructure() {
   // getting the randomized variable to add to the final count of revolutions
   const randomAngle = Math.floor(Math.random() * wheelRadius) + 1;
   // degrees that the wheels will do
@@ -16,7 +16,7 @@ function WheeleStructure() {
   const [displayedValue, setDisplayedValue] = useState(0);
   const wheelStyle = { transform: `rotate(${rotationAngle}deg)` };
 
-  const showSample = () => {
+  const startRotation = () => {
     setRotationAngle(angleWithin360);
     document.documentElement.style.setProperty('--stopAngle', `${stopAngle}deg`);
     document.documentElement.style.setProperty('--restartAngle', `${rotationAngle}deg`);
@@ -24,7 +24,7 @@ function WheeleStructure() {
 
     setTimeout(() => {
       setClicked(false);
-      const calculatedValue = prizeDisplay(angleWithin360, createDynamicObject(numberOfSlices));
+      const calculatedValue = prizeDisplay(angleWithin360, createDynamicObject());
       setDisplayedValue(calculatedValue);
     }, 5000);
   };
@@ -39,7 +39,12 @@ function WheeleStructure() {
               className={`dial ${clicked ? 'spinning' : ''}`}
               style={wheelStyle}
             >
-              <WheelSlice nOfSlice={numberOfSlices} />
+              {Array.from({ length: numberOfSlices }, (_, index) => (
+                <WheelSlice
+                  key={index}
+                  nOfSlice={index}
+                />
+              ))}
             </div>
           </div>
           <div className="arrow">
@@ -47,7 +52,7 @@ function WheeleStructure() {
           </div>
         </div>
         <WheelButton
-          event={showSample}
+          event={startRotation}
           isDisabled={clicked}
         />
       </div>
@@ -58,4 +63,4 @@ function WheeleStructure() {
   );
 }
 
-export default WheeleStructure;
+export default WheelStructure;

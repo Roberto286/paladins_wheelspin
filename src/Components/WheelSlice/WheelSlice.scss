@@ -6,7 +6,7 @@
   height: $sliceHeight;
   left: 50%;
   width: 50%;
-  color: white;
+  color: $white;
   text-align: right;
   padding-right: 10px;
   display: block;
@@ -24,14 +24,14 @@
   &:before {
     margin-bottom: -1px;
     margin-top: -2px;
-    border-width: 0 0 ($sliceHeight / 2 + 4px) $radius;
+    border-width: 0 0 ($sliceHeight / 2 + 4px) ($radius + 25px);
     border-color: transparent transparent $sliceColor transparent;
   }
 
   &:after {
     margin-top: -1px;
     margin-bottom: -2px;
-    border-width: 0 $radius ($sliceHeight / 2 + 4px) 0;
+    border-width: 0 ($radius + 25px) ($sliceHeight / 2 + 4px) 0;
     border-color: transparent $sliceColor transparent transparent;
   }
 
@@ -48,7 +48,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 70%;
+    width: 75%;
     line-height: $sliceHeight;
     padding-top: 1px;
     padding-bottom: 1px;
