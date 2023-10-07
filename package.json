@@ -32,7 +32,7 @@
     "sqlite3": "^5.1.6"
   },
   "lint-staged": {
-    "*.{js}": [
+    "*.js": [
       "npm run format",
       "npm run lint:fix"
     ]
