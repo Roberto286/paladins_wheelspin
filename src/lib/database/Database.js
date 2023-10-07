@@ -1,10 +1,15 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const path = require('path');
-const schemaCreationsScriptPath = path.join(__dirname, './tables_schema.sql'); //TODO -> make it configurable
+
+const schemaCreationsScriptPath = path.join(__dirname, './tables_schema.sql'); // TODO: Make it configurable
 
 class Database {
   constructor(dbPath) {
+    if (Database.instance) {
+      return Database.instance;
+    }
+
     this.db = new sqlite3.Database(dbPath, err => {
       if (err) {
         console.error('Error while opening database:', err.message);
@@ -13,36 +18,39 @@ class Database {
         this.initializeDatabase();
       }
     });
+
+    Database.instance = this;
   }
 
   initializeDatabase() {
-    this.db.serialize(() => {
-      this.db.get('SELECT COUNT(*) AS count FROM champions', (err, row) => {
-        if (err) {
-          console.error(err.message);
+    this.db.get('SELECT COUNT(*) AS count FROM champions', (err, row) => {
+      if (err) {
+        console.error(err.message);
+        this.executeScript(schemaCreationsScriptPath);
+      } else {
+        const { count: rowCount } = row;
+        if (rowCount === 0) {
           this.executeScript(schemaCreationsScriptPath);
         } else {
-          const { count: rowCount } = row;
-          if (rowCount === 0) {
-            this.executeScript(schemaCreationsScriptPath);
-          } else {
-            console.log('Skipping database creation');
-          }
+          console.log('Skipping database creation');
         }
-      });
+      }
     });
   }
 
   executeScript(sqlScriptPath) {
-    const script = fs.readFileSync(sqlScriptPath, 'utf-8');
-
-    this.db.exec(script, err => {
-      if (err) {
-        console.error(err.message);
-      } else {
-        console.log('Database created');
-      }
-    });
+    try {
+      const script = fs.readFileSync(sqlScriptPath, 'utf-8');
+      this.db.exec(script, err => {
+        if (err) {
+          console.error(err.message);
+        } else {
+          console.log('Database created');
+        }
+      });
+    } catch (error) {
+      console.error('Error while reading the script file:', error.message);
+    }
   }
 
   close() {
