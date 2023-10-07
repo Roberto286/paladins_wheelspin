@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
-const sqlScriptPath = './tables_schema.sql'; //TODO -> make it configurable
+const path = require('path');
+const schemaCreationsScriptPath = path.join(__dirname, './tables_schema.sql'); //TODO -> make it configurable
 
 class Database {
   constructor(dbPath) {
@@ -19,23 +20,28 @@ class Database {
       this.db.get('SELECT COUNT(*) AS count FROM champions', (err, row) => {
         if (err) {
           console.error(err.message);
+          this.executeScript(schemaCreationsScriptPath);
         } else {
           const { count: rowCount } = row;
           if (rowCount === 0) {
-            const script = fs.readFileSync(sqlScriptPath, 'utf-8');
-
-            this.db.exec(script, err => {
-              if (err) {
-                console.error(err.message);
-              } else {
-                console.log('Database created');
-              }
-            });
+            this.executeScript(schemaCreationsScriptPath);
           } else {
             console.log('Skipping database creation');
           }
         }
       });
+    });
+  }
+
+  executeScript(sqlScriptPath) {
+    const script = fs.readFileSync(sqlScriptPath, 'utf-8');
+
+    this.db.exec(script, err => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log('Database created');
+      }
     });
   }
 
