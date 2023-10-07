@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "nodemon ./src/index.js",
     "start": "node ./src/index.js",
-    "format": "prettier --config .prettierrc 'src/**/*.js' --write",
-    "lint": "eslint . --ext .js",
+    "format": "prettier --config .prettierrc 'src/**/*.js' --write", 
+    "lint": "eslint --ext js --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint --fix",
     "prepare": "husky install"
   },
   "keywords": [],
