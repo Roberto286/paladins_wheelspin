@@ -69,17 +69,21 @@ class Database {
     });
   }
 
-  async getChampionBy(fields, values) {
+  async getChampionsBy(fields, values) {
     return new Promise((resolve, reject) => {
       if (!Array.isArray(fields) || !Array.isArray(values) || fields.length !== values.length) {
         reject(new Error('Fields and values must be arrays of the same length.'));
         return;
       }
 
-      const whereConditions = fields.map(field => `${field} = ?`).join(' AND ');
-      const query = `SELECT * FROM champions WHERE ${whereConditions}`;
+      let whereClause = '';
 
-      this.db.get(query, values, (err, row) => {
+      if (fields.length > 0) {
+        whereClause = 'WHERE ' + fields.map(field => `${field} = ?`).join(' AND ');
+      }
+      const query = `SELECT * FROM champions_view ${whereClause}`;
+
+      this.db.all(query, values, (err, row) => {
         if (err) {
           reject(err);
         } else {
@@ -89,21 +93,53 @@ class Database {
     });
   }
 
-  async getRandomChampion(role) {
+  async getRandomChampion(roles) {
     let whereClause = '';
 
-    if (role) {
-      whereClause = 'WHERE role = ?';
+    if (roles?.length > 0) {
+      whereClause = 'WHERE ' + roles.map(() => 'role = ?').join(' OR ');
     }
 
-    const query = `SELECT * FROM table ${whereClause} ORDER BY RANDOM() LIMIT 1`;
+    const query = `SELECT * FROM champions_view ${whereClause} ORDER BY RANDOM()`;
 
     return new Promise((resolve, reject) => {
-      this.db.get(query, role, (err, row) => {
+      this.db.get(query, roles, (err, row) => {
         if (err) {
           reject(err);
         } else {
           resolve(row);
+        }
+      });
+    });
+  }
+
+  getAllChampions() {
+    return new Promise((resolve, reject) => {
+      this.db.all('SELECT * FROM champions', (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
+
+  getChampionsByRoles(roles) {
+    if (!Array.isArray(roles) || !roles.length) {
+      return Promise.reject(new Error('Invalid or empty roles array'));
+    }
+
+    const placeholders = roles.map(() => 'role = ?').join(' OR ');
+
+    return new Promise((resolve, reject) => {
+      const query = `SELECT * FROM champions_view WHERE ${placeholders}`;
+
+      this.db.all(query, roles, (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
         }
       });
     });
