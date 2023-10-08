@@ -17,8 +17,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 async function getRandomChampion(req, res) {
-  const randomChampion = await database.getRandomChampion('Damage');
+  const roles = Array.isArray(req.query.roles) ? req.query.roles : [req.query.roles];
+  const randomChampion = await database.getRandomChampion(roles);
   res.send(randomChampion);
+}
+
+async function getAllChampions(req, res) {
+  let roles = req.query.roles || [];
+  roles = Array.isArray(roles) ? roles : [roles];
+  const champions = await (roles.length ? database.getChampionsByRoles(roles) : database.getAllChampions());
+  res.send(champions);
 }
 
 app.get('/ping', (req, res) => {
@@ -26,6 +34,8 @@ app.get('/ping', (req, res) => {
 });
 
 app.get('/random', getRandomChampion);
+
+app.get('/champions', getAllChampions);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
