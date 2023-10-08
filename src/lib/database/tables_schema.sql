@@ -3,19 +3,23 @@ DROP TABLE IF EXISTS roles;
 
 CREATE TABLE roles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    description VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL COLLATE NOCASE,
 		UNIQUE (description)
 );
 
 CREATE TABLE champions (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(255) NOT NULL,
+    name TEXT NOT NULL,
     role_id INTEGER NOT NULL,
-		img_path VARCHAR(255),
+		img_path TEXT,
     FOREIGN KEY (role_id) REFERENCES roles(id),
 		UNIQUE (name)
 );
 
+CREATE VIEW champions_view AS
+SELECT champions.*, roles.description AS role
+FROM champions
+JOIN roles ON champions.role_id = roles.id;
 
 INSERT INTO roles (description) VALUES
 ('Frontline'), 
