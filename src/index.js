@@ -4,6 +4,9 @@ const cors = require('cors');
 const Database = require('./lib/database/Database');
 const path = require('path');
 const bodyParser = require('body-parser');
+const colorThief = require('colorthief');
+const Utility = require('./lib/utility');
+
 const databaseFilePath = path.join(__dirname, './lib/database/data.db'); // TODO: Make it configurable
 
 const port = 5623; //TODO -> MAKE IT CONFIGURABLE
@@ -19,14 +22,47 @@ app.use(bodyParser.json());
 async function getRandomChampion(req, res) {
   const roles = Array.isArray(req.query.roles) ? req.query.roles : [req.query.roles];
   const randomChampion = await database.getRandomChampion(roles);
+  const championImgFilePath = path.join(__dirname, randomChampion.img_path);
+
+  let dominantColor;
+
+  try {
+    dominantColor = await colorThief.getColor(championImgFilePath);
+  } catch (error) {
+    console.error('Error getting dominant color:', error);
+    dominantColor = [255, 255, 255];
+  }
+
+  randomChampion.dominant_color = Utility.rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
+
   res.send(randomChampion);
 }
 
 async function getAllChampions(req, res) {
-  let roles = req.query.roles || [];
-  roles = Array.isArray(roles) ? roles : [roles];
-  const champions = await (roles.length ? database.getChampionsByRoles(roles) : database.getAllChampions());
-  res.send(champions);
+  try {
+    let roles = req.query.roles || [];
+    roles = Array.isArray(roles) ? roles : [roles];
+    const champions = roles.length ? await database.getChampionsByRoles(roles) : await database.getAllChampions();
+
+    await Promise.all(
+      champions.map(async champ => {
+        const championImgFilePath = path.join(__dirname, champ.img_path);
+
+        try {
+          const dominantColor = await colorThief.getColor(championImgFilePath);
+          champ.dominant_color = Utility.rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
+        } catch (error) {
+          console.error('Error getting dominant color:', error);
+          champ.dominant_color = Utility.rgbToHex(255, 255, 255);
+        }
+      })
+    );
+
+    res.send(champions);
+  } catch (error) {
+    console.error('An error occurred:', error);
+    res.status(500).send('Internal Server Error');
+  }
 }
 
 app.get('/ping', (req, res) => {
