@@ -53,7 +53,7 @@ async function getAllChampions(req, res) {
           champ.dominant_color = Utility.rgbToHex(dominantColor[0], dominantColor[1], dominantColor[2]);
         } catch (error) {
           console.error('Error getting dominant color:', error);
-          champ.dominant_color = Utility.rgbToHex(255, 255, 255);
+          champ.dominant_color = '#FFFFFF';
         }
       })
     );
