@@ -1,12 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const Database = require('./lib/database/Database');
 const path = require('path');
 const bodyParser = require('body-parser');
-const databaseFilePath = path.join(__dirname, './lib/database/data.db'); // TODO: Make it configurable
+const databaseFilePath = path.join(__dirname, process.env.DATABASE_FILE_PATH); // TODO: Make it configurable
 
-const port = 5623; //TODO -> MAKE IT CONFIGURABLE
+const port = process.env.PORT || 7000; //TODO -> MOVE TO CONFIG FILE
 
 const app = express();
 const database = new Database(databaseFilePath);
