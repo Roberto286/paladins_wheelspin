@@ -1,0 +1,14 @@
+@import '../../assets/saasConfig.scss';
+button {
+  background: $dark_orange;
+  border: 0;
+  padding: 15px 50px;
+  color: $white;
+  position: absolute;
+  top: 50%;
+  margin-top: 8px;
+  right: 15%;
+  &:hover {
+    cursor: pointer;
+  }
+}
