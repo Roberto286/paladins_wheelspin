@@ -10,9 +10,10 @@ function WheelStructure() {
   const [randomChamp, setRandomChamp] = useState<Champions>();
   // getting the randomized variable to add to the final count of revolutions
   const randomAngle = getRandomAngle(randomChamp?.id || 0);
+  // wheelRadius / nOfChamps --> result * id fetched from BE
+  // degrees that the wheels will do
   // this is the side product of the degree, it will show the raw value within 360 degrees
   const angleWithin360 = randomAngle.then(res => res % wheelRadius);
-
   const [clicked, setClicked] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
   const [displayedValue, setDisplayedValue] = useState<Champions>();
@@ -85,5 +86,4 @@ function WheelStructure() {
     </>
   );
 }
-
 export default WheelStructure;
