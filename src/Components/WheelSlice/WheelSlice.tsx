@@ -1,12 +1,13 @@
+import { Champions } from '../../Utils/Interfaces';
 import './WheelSlice.scss';
 
 type WheelSliceProps = {
-  nOfSlice: number;
+  nOfSlice: Champions;
 };
 function WheelSlice({ nOfSlice }: WheelSliceProps) {
   return (
     <div className="slice">
-      <div className="label">{nOfSlice + 1}</div>
+      <div className="label">{nOfSlice.name}</div>
     </div>
   );
 }
