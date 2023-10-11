@@ -1,18 +1,10 @@
 import './WheelButton.scss';
 
 type WheelButtonProps = {
-  event: (() => void)[];
+  event: () => void;
   isDisabled: boolean;
 };
 function WheelButton({ event, isDisabled }: WheelButtonProps) {
-  const [startRotation, refreshRandomChamp] = event;
-
-  const handleButtonClick = () => {
-    if (!isDisabled) {
-      startRotation();
-      refreshRandomChamp();
-    }
-  };
   return (
     <div className="content-container">
       <div className="pre">
@@ -20,7 +12,9 @@ function WheelButton({ event, isDisabled }: WheelButtonProps) {
           id="spin"
           type="button"
           disabled={isDisabled}
-          onClick={() => handleButtonClick()}
+          onClick={() => {
+            event();
+          }}
         >
           Spin
         </button>

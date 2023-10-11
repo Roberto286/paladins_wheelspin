@@ -1,20 +1,14 @@
-import { numberOfSlices } from './endpointCalls';
-
+export const numberOfSlices = 56;
 export const wheelRadius = 360;
+export const sliceSize = wheelRadius / numberOfSlices;
 
-export const getRandomAngle = async (id: number) => {
-  try {
-    const nOfSlices = await numberOfSlices;
-    const slice = wheelRadius / nOfSlices;
-    const rotation = 3600 + slice * id - 1;
-    return rotation;
-  } catch (error) {
-    return 0;
-  }
+export const createDynamicObject = () => {
+  const dinamicObj = Object.fromEntries(Array.from({ length: numberOfSlices }, (_, i) => [i + 1, numberOfSlices - i]));
+  return dinamicObj;
 };
-export const getStartAngle = async (id: number) => {
-  const nOfSlices = await numberOfSlices;
-  const slices = wheelRadius / nOfSlices;
-  const rotation = slices * id;
-  return rotation;
+
+type DynamicObject = { [key: number]: number };
+export const prizeDisplay = (actualDeg: number, obj: DynamicObject) => {
+  const positionInTheWheel = Math.round(actualDeg / sliceSize);
+  return obj[positionInTheWheel];
 };
