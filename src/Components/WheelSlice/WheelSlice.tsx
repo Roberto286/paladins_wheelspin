@@ -1,13 +1,16 @@
-import { Champions } from '../../Utils/Interfaces';
 import './WheelSlice.scss';
 
 type WheelSliceProps = {
-  nOfSlice: Champions;
+  championName: string;
+  slice: number;
 };
-function WheelSlice({ nOfSlice }: WheelSliceProps) {
+function WheelSlice({ championName, slice }: WheelSliceProps) {
   return (
-    <div className="slice">
-      <div className="label">{nOfSlice.name}</div>
+    <div
+      className="slice"
+      style={{ transform: `rotate(${slice}deg)` }}
+    >
+      <div className="label">{championName}</div>
     </div>
   );
 }

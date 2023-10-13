@@ -2,10 +2,15 @@ import { numberOfSlices } from './endpointCalls';
 
 export const wheelRadius = 360;
 
+export const sliceCalc = async () => {
+  const nOfSlices = await numberOfSlices;
+  const slice = wheelRadius / nOfSlices;
+  return slice;
+};
+
 export const getRandomAngle = async (id: number) => {
   try {
-    const nOfSlices = await numberOfSlices;
-    const slice = wheelRadius / nOfSlices;
+    const slice = await sliceCalc();
     const rotation = 3600 + slice * id - 1;
     return rotation;
   } catch (error) {

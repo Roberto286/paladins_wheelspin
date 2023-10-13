@@ -1,4 +1,4 @@
-import WheelStructure from './Components/WheelStructure/WheeleStructure';
+import WheelStructure from './Components/WheelStructure/WheelStructure';
 
 function App() {
   return <WheelStructure />;
