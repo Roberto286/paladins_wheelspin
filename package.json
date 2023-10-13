@@ -9,7 +9,8 @@
     "format": "prettier --config .prettierrc src/**/*.js --write",
     "lint": "eslint --ext js --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clean-db": "rimraf ./src/lib/database/data.db"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +23,12 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "nodemon": "^3.0.1",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
+    "colorthief": "^2.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

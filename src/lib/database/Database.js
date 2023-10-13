@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
-const path = require('path');
+const initDbScriptPath = process.env.INIT_DB_SCRIPT_PATH || '';
 
 class Database {
   constructor(dbFilePath) {
@@ -31,14 +31,14 @@ class Database {
     this.getChampionsCount()
       .then(rowCount => {
         if (rowCount === 0) {
-          this.executeScript(path.join(__dirname, './tables_schema.sql'));
+          this.executeScript(initDbScriptPath);
         } else {
           console.log('Skipping database creation');
         }
       })
       .catch(err => {
         console.error(err.message);
-        this.executeScript(path.join(__dirname, './tables_schema.sql'));
+        this.executeScript(initDbScriptPath);
       });
   }
 
@@ -57,7 +57,7 @@ class Database {
     }
   }
 
-  async getChampionsCount() {
+  getChampionsCount() {
     return new Promise((resolve, reject) => {
       this.db.get('SELECT COUNT(*) AS count FROM champions', (err, row) => {
         if (err) {
@@ -69,7 +69,7 @@ class Database {
     });
   }
 
-  async getChampionsBy(fields, values) {
+  getChampionsBy(fields, values) {
     return new Promise((resolve, reject) => {
       if (!Array.isArray(fields) || !Array.isArray(values) || fields.length !== values.length) {
         reject(new Error('Fields and values must be arrays of the same length.'));
@@ -93,7 +93,7 @@ class Database {
     });
   }
 
-  async getRandomChampion(roles) {
+  getRandomChampion(roles) {
     let whereClause = '';
 
     if (roles?.length > 0) {
