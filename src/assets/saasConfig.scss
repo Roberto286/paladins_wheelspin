@@ -1,10 +1,11 @@
 $diameter: 350px;
 $radius: calc($diameter / 2);
+$numberOfSlices: 46;
 $circumfrance: calc(6.283185307 * $radius);
-$sliceHeight: calc($circumfrance / 46);
+$sliceHeight: calc($circumfrance / $numberOfSlices);
 $sliceOffeset: calc($sliceHeight / 2);
 $sliceColor: #095b8d;
-$rotation: calc(360deg / var(--nOfSlices));
+$rotation: calc(360deg / $numberOfSlices);
 $white: #ffff;
 $dark_orange: #c27028;
 $black: #000000;
