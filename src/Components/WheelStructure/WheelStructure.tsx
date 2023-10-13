@@ -15,8 +15,8 @@ function WheelStructure() {
   const wheelStyle = { transform: `rotate(${rotationAngle}deg)` };
 
   const startRotation = async () => {
-    const randomChampion = await getRandomChamp();
-    const randomAngle = getRandomAngle(randomChampion.id);
+    const randomChamp = await getRandomChamp();
+    const randomAngle = getRandomAngle(randomChamp.id);
     const getAngleWithin360 = async () => (await randomAngle) % wheelRadius;
     setRotationAngle(await getAngleWithin360());
     document.documentElement.style.setProperty('--stopAngle', `${await randomAngle}deg`);
@@ -25,14 +25,14 @@ function WheelStructure() {
 
     setTimeout(async () => {
       setClicked(false);
-      setDisplayedValue(randomChampion);
+      setDisplayedValue(randomChamp);
     }, 5000);
   };
 
   useEffect(() => {
     (async () => {
-      const champions = await getAllChampions();
-      setChampsArray(champions);
+      const allChampions = await getAllChampions();
+      setChampsArray(allChampions);
       setSlice(await sliceCalc());
     })();
   }, []);
@@ -51,7 +51,7 @@ function WheelStructure() {
                 <WheelSlice
                   key={e.id}
                   championName={e.name}
-                  slice={slice * i}
+                  sliceHeight={slice * i}
                 />
               ))}
             </div>
