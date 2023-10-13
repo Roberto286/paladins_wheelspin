@@ -23,7 +23,7 @@ function WheelStructure() {
     document.documentElement.style.setProperty('--restartAngle', `${rotationAngle}deg`);
     setClicked(true);
 
-    setTimeout(async () => {
+    setTimeout(() => {
       setClicked(false);
       setDisplayedValue(randomChamp);
     }, 5000);
