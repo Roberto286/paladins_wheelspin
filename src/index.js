@@ -21,7 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 async function getRandomChampion(req, res) {
-  const roles = Array.isArray(req.query.roles) ? req.query.roles : [req.query.roles];
+  let roles = req.query.roles || [];
+  roles = Array.isArray(roles) ? roles : [roles];
   const randomChampion = await database.getRandomChampion(roles);
   const championImgFilePath = path.join(__dirname, randomChampion.img_path);
 
