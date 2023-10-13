@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
-const path = require('path');
+const initDbScriptPath = process.env.INIT_DB_SCRIPT_PATH || '';
 
 class Database {
   constructor(dbFilePath) {
@@ -31,14 +31,14 @@ class Database {
     this.getChampionsCount()
       .then(rowCount => {
         if (rowCount === 0) {
-          this.executeScript(path.join(__dirname, './tables_schema.sql'));
+          this.executeScript(initDbScriptPath);
         } else {
           console.log('Skipping database creation');
         }
       })
       .catch(err => {
         console.error(err.message);
-        this.executeScript(path.join(__dirname, './tables_schema.sql'));
+        this.executeScript(initDbScriptPath);
       });
   }
 
