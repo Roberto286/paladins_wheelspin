@@ -57,11 +57,11 @@
     padding-left: 20px;
   }
 
-  $iterator: 0;
-  @for $i from 1 through $numberOfSlices {
-    &:nth-child(#{$i}) {
-      transform: rotate($iterator);
-    }
-    $iterator: $iterator + $rotation;
-  }
+  // $iterator: 0;
+  // @for $i from 1 through $numberOfSlices {
+  //   &:nth-child(#{$i}) {
+  //     transform: rotate($iterator);
+  //   }
+  //   $iterator: $iterator + $rotation;
+  // }
 }

@@ -5,6 +5,11 @@ type WheelButtonProps = {
   isDisabled: boolean;
 };
 function WheelButton({ event, isDisabled }: WheelButtonProps) {
+  const handleButtonClick = () => {
+    if (!isDisabled) {
+      event();
+    }
+  };
   return (
     <div className="content-container">
       <div className="pre">
@@ -12,9 +17,7 @@ function WheelButton({ event, isDisabled }: WheelButtonProps) {
           id="spin"
           type="button"
           disabled={isDisabled}
-          onClick={() => {
-            event();
-          }}
+          onClick={() => handleButtonClick()}
         >
           Spin
         </button>
