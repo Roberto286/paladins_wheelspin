@@ -2,23 +2,29 @@ import axios from 'axios';
 import { IChampion } from './Interfaces';
 
 const port = 5623;
-const getAllChampionsURL = `http://localhost:${port}/champions`;
-const getRandomChampion = `http://localhost:${port}/random`;
+const baseApiUrl = `http://localhost:${port}`;
+const getAllChampionsURLReversed = `${baseApiUrl}/champions?reversed=true`;
+const getRandomChampionURL = `${baseApiUrl}/random`;
 
-export const getAllChampions = async () => {
+const axiosConfig = {
+  withCredentials: false, // TODO -> Backend will soon have authentication
+};
+
+const AXIOS = axios.create(axiosConfig);
+
+const fetchAndHandleErrors = async <T>(url: string, errorMessage: string): Promise<T> => {
   try {
-    const response = await axios.get<IChampion[]>(getAllChampionsURL);
-    return response.data.reverse();
+    const response = await AXIOS.get<T>(url);
+    return response.data;
   } catch (error) {
-    return [];
+    throw new Error(errorMessage);
   }
 };
 
-export const getRandomChamp = async () => {
-  try {
-    const response = await axios.get<IChampion>(getRandomChampion);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Champion data not found in the response`);
-  }
+export const getAllChampions = async (): Promise<IChampion[]> => {
+  return fetchAndHandleErrors<IChampion[]>(getAllChampionsURLReversed, 'Error fetching champion data');
+};
+
+export const getRandomChamp = async (): Promise<IChampion> => {
+  return fetchAndHandleErrors<IChampion>(getRandomChampionURL, 'Champion data not found in the response');
 };
