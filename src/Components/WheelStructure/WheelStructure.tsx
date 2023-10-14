@@ -47,6 +47,7 @@ function WheelStructure() {
       key={champion.id}
       championName={champion.name}
       sliceHeight={slice * index}
+      color={champion.dominant_color}
     />
   ));
 
@@ -59,6 +60,12 @@ function WheelStructure() {
             className={`dial ${clicked ? 'spinning' : ''}`}
             style={wheelStyle}
           >
+            <div className="dial-before">
+              <WheelButton
+                event={startRotation}
+                isDisabled={clicked}
+              />
+            </div>
             {slicesArray}
           </div>
         </div>
@@ -66,10 +73,6 @@ function WheelStructure() {
           <span className="pointer" />
         </div>
       </div>
-      <WheelButton
-        event={startRotation}
-        isDisabled={clicked}
-      />
       <div className="display-container">
         {displayedValue ? (
           <>
