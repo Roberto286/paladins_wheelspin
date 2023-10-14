@@ -42,9 +42,12 @@ async function getRandomChampion(req, res) {
 
 async function getAllChampions(req, res) {
   try {
+    const reversed = req.query.reversed;
     let roles = req.query.roles || [];
     roles = Array.isArray(roles) ? roles : [roles];
-    const champions = roles.length ? await database.getChampionsByRoles(roles) : await database.getAllChampions();
+    const champions = roles.length
+      ? await database.getChampionsByRoles(roles, !!reversed)
+      : await database.getAllChampions(!!reversed);
 
     await Promise.all(
       champions.map(async champ => {

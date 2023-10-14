@@ -113,9 +113,9 @@ class Database {
     });
   }
 
-  getAllChampions() {
+  getAllChampions(reversed) {
     return new Promise((resolve, reject) => {
-      this.db.all('SELECT * FROM champions', (err, rows) => {
+      this.db.all(`SELECT * FROM champions ${reversed ? 'ORDER BY id DESC' : ''}`, (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -125,7 +125,7 @@ class Database {
     });
   }
 
-  getChampionsByRoles(roles) {
+  getChampionsByRoles(roles, reversed) {
     if (!Array.isArray(roles) || !roles.length) {
       return Promise.reject(new Error('Invalid or empty roles array'));
     }
@@ -133,8 +133,7 @@ class Database {
     const placeholders = roles.map(() => 'role = ?').join(' OR ');
 
     return new Promise((resolve, reject) => {
-      const query = `SELECT * FROM champions_view WHERE ${placeholders}`;
-
+      const query = `SELECT * FROM champions_view WHERE ${placeholders} ${reversed ? 'ORDER BY id DESC' : ''}`;
       this.db.all(query, roles, (err, rows) => {
         if (err) {
           reject(err);
