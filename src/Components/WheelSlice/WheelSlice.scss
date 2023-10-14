@@ -2,7 +2,7 @@
 .slice {
   z-index: 150;
   position: absolute;
-  top: calc(50% - #{$sliceOffeset});
+  top: calc(50% - #{$sliceOffset});
   height: $sliceHeight;
   left: 50%;
   width: 50%;
@@ -12,8 +12,8 @@
   display: block;
   transform-origin: left center;
 
-  &:before,
-  &:after {
+  .before,
+  .after {
     content: '';
     display: block;
     width: 0;
@@ -21,27 +21,16 @@
     border-style: solid;
   }
 
-  &:before {
+  .before {
     margin-bottom: -1px;
     margin-top: -2px;
     border-width: 0 0 calc($sliceHeight / 2 + 4px) ($radius + 25px);
-    border-color: transparent transparent $sliceColor transparent;
   }
 
-  &:after {
+  .after {
     margin-top: -1px;
     margin-bottom: -2px;
     border-width: 0 ($radius + 25px) calc($sliceHeight / 2 + 4px) 0;
-    border-color: transparent $sliceColor transparent transparent;
-  }
-
-  &:nth-child(even) {
-    &:after {
-      border-color: transparent darken($sliceColor, 10%) transparent transparent;
-    }
-    &:before {
-      border-color: transparent transparent darken($sliceColor, 10%) transparent;
-    }
   }
 
   .label {
@@ -52,16 +41,8 @@
     line-height: $sliceHeight;
     padding-top: 1px;
     padding-bottom: 1px;
-    font-size: 16px;
+    font-size: 14px;
     text-align: right;
     padding-left: 20px;
   }
-
-  // $iterator: 0;
-  // @for $i from 1 through $numberOfSlices {
-  //   &:nth-child(#{$i}) {
-  //     transform: rotate($iterator);
-  //   }
-  //   $iterator: $iterator + $rotation;
-  // }
 }
