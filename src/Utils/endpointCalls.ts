@@ -4,7 +4,7 @@ import { IChampion } from './Interfaces';
 const port = 5623;
 const getAllChampionsURL = `http://localhost:${port}/champions`;
 const getChampionsCount = `http://localhost:${port}/count`;
-const getRandomChampion = `http://localhost:${port}/random?roles=frontline&roles=support&roles=damage&roles=flank`;
+const getRandomChampion = `http://localhost:${port}/random`;
 
 export const numberOfSlices = axios.get(getChampionsCount).then(res => res.data);
 
