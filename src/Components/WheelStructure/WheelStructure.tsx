@@ -5,6 +5,7 @@ import './WheelStructure.scss';
 import { getRandomAngle, sliceCalc, wheelRadius } from '../../Utils/Utils';
 import { IChampion } from '../../Utils/Interfaces';
 import { getAllChampions, getRandomChamp } from '../../Utils/endpointCalls';
+import LoaderComponent from '../LoaderComponent/LoaderComponent';
 
 function WheelStructure() {
   const [clicked, setClicked] = useState(false);
@@ -12,11 +13,12 @@ function WheelStructure() {
   const [displayedValue, setDisplayedValue] = useState<IChampion>();
   const [champions, setChampions] = useState<IChampion[]>([]);
   const [slice, setSlice] = useState(0);
-
+  const [isLoading, setIsLoading] = useState(true);
   const wheelStyle = { transform: `rotate(${rotationAngle}deg)` };
 
   const fetchData = async () => {
     const allChampions = await getAllChampions();
+    setIsLoading(false);
     setChampions(allChampions);
     setSlice(sliceCalc(allChampions.length));
   };
@@ -55,23 +57,29 @@ function WheelStructure() {
     <div className="container">
       <h1>Paladins wheel of fortune</h1>
       <div className="board">
-        <div className="spinner-table">
-          <div
-            className={`dial ${clicked ? 'spinning' : ''}`}
-            style={wheelStyle}
-          >
-            <div className="dial-before">
-              <WheelButton
-                event={startRotation}
-                isDisabled={clicked}
-              />
+        {isLoading ? (
+          <LoaderComponent />
+        ) : (
+          <>
+            <div className="spinner-table">
+              <div
+                className={`dial ${clicked ? 'spinning' : ''}`}
+                style={wheelStyle}
+              >
+                <div className="dial-before">
+                  <WheelButton
+                    event={startRotation}
+                    isDisabled={clicked}
+                  />
+                </div>
+                {slicesArray}
+              </div>
             </div>
-            {slicesArray}
-          </div>
-        </div>
-        <div className="arrow">
-          <span className="pointer" />
-        </div>
+            <div className="arrow">
+              <span className="pointer" />
+            </div>
+          </>
+        )}
       </div>
       <div className="display-container">
         {displayedValue ? (

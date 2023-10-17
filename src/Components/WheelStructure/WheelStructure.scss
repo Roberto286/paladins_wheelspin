@@ -15,8 +15,8 @@
     padding: 50px;
 
     .spinner-table {
-      height: $diameter + 50px;
-      width: $diameter + 50px;
+      height: $wheelSize;
+      width: $wheelSize;
       position: relative;
       border-radius: 100%;
       overflow: hidden;
