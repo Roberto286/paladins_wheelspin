@@ -18,8 +18,9 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["node", "vite/client"]
   },
-  "include": ["src", ".eslintrc.cjs"],
+  "include": ["src", ".eslintrc.cjs", "mock"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -3,7 +3,7 @@ import { IChampion } from './Interfaces';
 
 const port = 5623;
 const baseApiUrl = `http://localhost:${port}`;
-const getAllChampionsURLReversed = `${baseApiUrl}/champions?reversed=true`;
+const getAllChampionsURLReversed = `/champions?reversed=true`;
 const getRandomChampionURL = `${baseApiUrl}/random`;
 
 const axiosConfig = {
