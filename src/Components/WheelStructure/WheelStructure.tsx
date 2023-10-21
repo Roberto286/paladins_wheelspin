@@ -4,7 +4,7 @@ import WheelSlice from '../WheelSlice/WheelSlice';
 import './WheelStructure.scss';
 import { getRandomAngle, sliceCalc, wheelRadius } from '../../Utils/Utils';
 import { Champion } from '../../interfaces/Champion';
-import { getAllChampions, getRandomChamp } from '../../Utils/endpointCalls';
+import { getAllChampions, getRandomChamp } from '../../network/endpointCalls';
 
 function WheelStructure() {
   const [clicked, setClicked] = useState(false);

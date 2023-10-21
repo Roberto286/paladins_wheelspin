@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import http from 'http';
 import { Champion } from '../interfaces/Champion';
-import urls from '../network/championsUrls';
+import urls from './championsUrls';
 
 const axiosConfig = {
   withCredentials: false, // TODO -> Backend will soon have authentication
