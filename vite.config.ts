@@ -1,28 +1,32 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import { viteMockServe } from 'vite-plugin-mock';
+import { ProxyConfig } from './src/interfaces/ProxyConfig';
+import urls from './src/network/championsUrls';
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   const isMockEnabled = process.env?.VITE_USE_MOCK === 'true';
-
+  const backendBase = process.env?.VITE_BACKEND_API || '';
+  const proxyConfig: ProxyConfig = Object.entries(urls).reduce((acc, [key]) => {
+    acc[key] = {
+      target: backendBase,
+      changeOrigin: true,
+    };
+    return acc;
+  }, {});
   return defineConfig({
     envDir: 'env',
     plugins: [
       react(),
       viteMockServe({
-        mockPath: 'mock',
+        mockPath: 'src/network/mock',
         localEnabled: isMockEnabled,
       }),
     ],
     server: {
-      proxy: {
-        '/champions': {
-          target: 'http://localhost:5623',
-          changeOrigin: true,
-        },
-      },
+      proxy: proxyConfig,
     },
   });
 };

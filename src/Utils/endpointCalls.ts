@@ -1,30 +1,28 @@
-import axios from 'axios';
-import { IChampion } from './Interfaces';
-
-const port = 5623;
-const baseApiUrl = `http://localhost:${port}`;
-const getAllChampionsURLReversed = `/champions?reversed=true`;
-const getRandomChampionURL = `${baseApiUrl}/random`;
+import axios, { AxiosInstance } from 'axios';
+import http from 'http';
+import { Champion } from '../interfaces/Champion';
+import urls from '../network/championsUrls';
 
 const axiosConfig = {
   withCredentials: false, // TODO -> Backend will soon have authentication
+  httpAgent: new http.Agent({ keepAlive: true }),
 };
 
-const AXIOS = axios.create(axiosConfig);
+const AXIOS: AxiosInstance = axios.create(axiosConfig);
 
 const fetchAndHandleErrors = async <T>(url: string, errorMessage: string): Promise<T> => {
   try {
     const response = await AXIOS.get<T>(url);
     return response.data;
   } catch (error) {
-    throw new Error(errorMessage);
+    throw new Error(errorMessage); // TODO -> SHOW AN ALERT WITH ERROR MESSAGE INSTEAD OF THROWING AN ERROR
   }
 };
 
-export const getAllChampions = async (): Promise<IChampion[]> => {
-  return fetchAndHandleErrors<IChampion[]>(getAllChampionsURLReversed, 'Error fetching champion data');
+export const getAllChampions = async (): Promise<Champion[]> => {
+  return fetchAndHandleErrors<Champion[]>(urls.getAllChampionsURLReversed, 'Error fetching champion data');
 };
 
-export const getRandomChamp = async (): Promise<IChampion> => {
-  return fetchAndHandleErrors<IChampion>(getRandomChampionURL, 'Champion data not found in the response');
+export const getRandomChamp = async (): Promise<Champion> => {
+  return fetchAndHandleErrors<Champion>(urls.getRandomChampionURL, 'Champion data not found in the response');
 };

@@ -16,7 +16,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json', './tsconfig.node.json'],
     extraFileExtensions: ['.css'],
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
@@ -28,6 +29,6 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
-  ignorePatterns: ['vite.config.ts'],
 };
