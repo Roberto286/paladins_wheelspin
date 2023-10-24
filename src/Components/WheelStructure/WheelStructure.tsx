@@ -3,14 +3,14 @@ import WheelButton from '../WheelButton/WheelButton';
 import WheelSlice from '../WheelSlice/WheelSlice';
 import './WheelStructure.scss';
 import { getRandomAngle, sliceCalc, wheelRadius } from '../../Utils/Utils';
-import { IChampion } from '../../Utils/Interfaces';
-import { getAllChampions, getRandomChamp } from '../../Utils/endpointCalls';
+import { Champion } from '../../interfaces/Champion';
+import { getAllChampions, getRandomChamp } from '../../network/endpointCalls';
 
 function WheelStructure() {
   const [clicked, setClicked] = useState(false);
   const [rotationAngle, setRotationAngle] = useState(0);
-  const [displayedValue, setDisplayedValue] = useState<IChampion>();
-  const [champions, setChampions] = useState<IChampion[]>([]);
+  const [displayedValue, setDisplayedValue] = useState<Champion>();
+  const [champions, setChampions] = useState<Champion[]>([]);
   const [slice, setSlice] = useState(0);
 
   const wheelStyle = { transform: `rotate(${rotationAngle}deg)` };
