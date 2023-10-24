@@ -1,3 +1,4 @@
+import ChampionRole from '../../enums/ChampionRole.enum';
 import { ChampionsList } from '../../interfaces/Champion';
 
 const championsList: ChampionsList = [
@@ -6,6 +7,7 @@ const championsList: ChampionsList = [
     name: 'Fernando',
     role_id: 1,
     img_path: 'images/champions/fernando.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#d88e71',
   },
   {
@@ -13,6 +15,7 @@ const championsList: ChampionsList = [
     name: 'Barik',
     role_id: 1,
     img_path: 'images/champions/barik.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#5d2828',
   },
   {
@@ -20,6 +23,7 @@ const championsList: ChampionsList = [
     name: 'Ruckus',
     role_id: 1,
     img_path: 'images/champions/ruckus.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#413225',
   },
   {
@@ -27,6 +31,7 @@ const championsList: ChampionsList = [
     name: 'Makoa',
     role_id: 1,
     img_path: 'images/champions/makoa.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#42391f',
   },
   {
@@ -34,6 +39,7 @@ const championsList: ChampionsList = [
     name: 'Inara',
     role_id: 1,
     img_path: 'images/champions/inara.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#3d4040',
   },
   {
@@ -41,6 +47,7 @@ const championsList: ChampionsList = [
     name: 'Ash',
     role_id: 1,
     img_path: 'images/champions/ash.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#483d45',
   },
   {
@@ -48,6 +55,7 @@ const championsList: ChampionsList = [
     name: 'Torvald',
     role_id: 1,
     img_path: 'images/champions/torvald.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#393e43',
   },
   {
@@ -55,6 +63,7 @@ const championsList: ChampionsList = [
     name: 'Terminus',
     role_id: 1,
     img_path: 'images/champions/terminus.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#3b3c3c',
   },
   {
@@ -62,6 +71,7 @@ const championsList: ChampionsList = [
     name: 'Khan',
     role_id: 1,
     img_path: 'images/champions/khan.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#492d29',
   },
   {
@@ -69,6 +79,7 @@ const championsList: ChampionsList = [
     name: 'Atlas',
     role_id: 1,
     img_path: 'images/champions/atlas.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#3d484b',
   },
   {
@@ -76,6 +87,7 @@ const championsList: ChampionsList = [
     name: 'Yagorath',
     role_id: 1,
     img_path: 'images/champions/yagorath.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#3b3d37',
   },
   {
@@ -83,6 +95,7 @@ const championsList: ChampionsList = [
     name: 'Vora',
     role_id: 1,
     img_path: 'images/champions/vora.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#3b3a3f',
   },
   {
@@ -90,6 +103,7 @@ const championsList: ChampionsList = [
     name: 'Rei',
     role_id: 1,
     img_path: 'images/champions/rei.jpeg',
+    role: ChampionRole.FRONTLINE,
     dominant_color: '#766773',
   },
   {
@@ -97,6 +111,7 @@ const championsList: ChampionsList = [
     name: 'MalDamba',
     role_id: 4,
     img_path: 'images/champions/maldamba.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#4a4743',
   },
   {
@@ -104,6 +119,7 @@ const championsList: ChampionsList = [
     name: 'Pip',
     role_id: 4,
     img_path: 'images/champions/pip.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#404a45',
   },
   {
@@ -111,6 +127,7 @@ const championsList: ChampionsList = [
     name: 'Grover',
     role_id: 4,
     img_path: 'images/champions/grover.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#3f3a25',
   },
   {
@@ -118,6 +135,7 @@ const championsList: ChampionsList = [
     name: 'Seris',
     role_id: 4,
     img_path: 'images/champions/seris.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#3d424a',
   },
   {
@@ -125,6 +143,7 @@ const championsList: ChampionsList = [
     name: 'Ying',
     role_id: 4,
     img_path: 'images/champions/ying.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#363c3f',
   },
   {
@@ -132,6 +151,7 @@ const championsList: ChampionsList = [
     name: 'Grohk',
     role_id: 4,
     img_path: 'images/champions/grohk.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#3d444e',
   },
   {
@@ -139,6 +159,7 @@ const championsList: ChampionsList = [
     name: 'Jenos',
     role_id: 4,
     img_path: 'images/champions/jenos.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#3b525f',
   },
   {
@@ -146,6 +167,7 @@ const championsList: ChampionsList = [
     name: 'Furia',
     role_id: 4,
     img_path: 'images/champions/furia.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#86482a',
   },
   {
@@ -153,6 +175,7 @@ const championsList: ChampionsList = [
     name: 'Io',
     role_id: 4,
     img_path: 'images/champions/io.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#8d91a7',
   },
   {
@@ -160,6 +183,7 @@ const championsList: ChampionsList = [
     name: 'Corvus',
     role_id: 4,
     img_path: 'images/champions/corvus.jpeg',
+    role: ChampionRole.SUPPORT,
     dominant_color: '#4d3a33',
   },
   {
@@ -167,6 +191,7 @@ const championsList: ChampionsList = [
     name: 'Cassie',
     role_id: 2,
     img_path: 'images/champions/cassie.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#503f38',
   },
   {
@@ -174,6 +199,7 @@ const championsList: ChampionsList = [
     name: 'Viktor',
     role_id: 2,
     img_path: 'images/champions/viktor.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#d89481',
   },
   {
@@ -181,6 +207,7 @@ const championsList: ChampionsList = [
     name: 'Tyra',
     role_id: 2,
     img_path: 'images/champions/tyra.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#484a49',
   },
   {
@@ -188,6 +215,7 @@ const championsList: ChampionsList = [
     name: 'Bomb King',
     role_id: 2,
     img_path: 'images/champions/bombking.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#464a4e',
   },
   {
@@ -195,6 +223,7 @@ const championsList: ChampionsList = [
     name: 'Drogoz',
     role_id: 2,
     img_path: 'images/champions/drogoz.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#413e3a',
   },
   {
@@ -202,6 +231,7 @@ const championsList: ChampionsList = [
     name: 'Kinessa',
     role_id: 2,
     img_path: 'images/champions/kinessa.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#404441',
   },
   {
@@ -209,6 +239,7 @@ const championsList: ChampionsList = [
     name: 'Strix',
     role_id: 2,
     img_path: 'images/champions/strix.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#454240',
   },
   {
@@ -216,6 +247,7 @@ const championsList: ChampionsList = [
     name: 'Sha Lin',
     role_id: 2,
     img_path: 'images/champions/shalin.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#413437',
   },
   {
@@ -223,6 +255,7 @@ const championsList: ChampionsList = [
     name: 'Lian',
     role_id: 2,
     img_path: 'images/champions/lian.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#b8a49b',
   },
   {
@@ -230,6 +263,7 @@ const championsList: ChampionsList = [
     name: 'Willo',
     role_id: 2,
     img_path: 'images/champions/willo.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#be6787',
   },
   {
@@ -237,6 +271,7 @@ const championsList: ChampionsList = [
     name: 'Talus',
     role_id: 2,
     img_path: 'images/champions/talus.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#4a4e49',
   },
   {
@@ -244,6 +279,7 @@ const championsList: ChampionsList = [
     name: 'Moji',
     role_id: 2,
     img_path: 'images/champions/moji.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#494a64',
   },
   {
@@ -251,6 +287,7 @@ const championsList: ChampionsList = [
     name: 'Octavia',
     role_id: 2,
     img_path: 'images/champions/octavia.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#3d312f',
   },
   {
@@ -258,6 +295,7 @@ const championsList: ChampionsList = [
     name: 'Saati',
     role_id: 2,
     img_path: 'images/champions/saati.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#41525b',
   },
   {
@@ -265,6 +303,7 @@ const championsList: ChampionsList = [
     name: 'Tiberius',
     role_id: 2,
     img_path: 'images/champions/tiberius.jpeg',
+    role: ChampionRole.DAMAGE,
     dominant_color: '#3a2726',
   },
   {
@@ -272,6 +311,7 @@ const championsList: ChampionsList = [
     name: 'Androxus',
     role_id: 3,
     img_path: 'images/champions/androxus.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#454853',
   },
   {
@@ -279,6 +319,7 @@ const championsList: ChampionsList = [
     name: 'Buck',
     role_id: 3,
     img_path: 'images/champions/buck.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#414543',
   },
   {
@@ -286,6 +327,7 @@ const championsList: ChampionsList = [
     name: 'Evie',
     role_id: 3,
     img_path: 'images/champions/evie.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#3d4f5d',
   },
   {
@@ -293,6 +335,7 @@ const championsList: ChampionsList = [
     name: 'Maeve',
     role_id: 3,
     img_path: 'images/champions/maeve.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#b25e79',
   },
   {
@@ -300,6 +343,7 @@ const championsList: ChampionsList = [
     name: 'Lex',
     role_id: 3,
     img_path: 'images/champions/lex.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#3f484a',
   },
   {
@@ -307,6 +351,7 @@ const championsList: ChampionsList = [
     name: 'Zhin',
     role_id: 3,
     img_path: 'images/champions/zhin.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#3d434a',
   },
   {
@@ -314,6 +359,7 @@ const championsList: ChampionsList = [
     name: 'Skye',
     role_id: 3,
     img_path: 'images/champions/skye.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#3e334d',
   },
   {
@@ -321,6 +367,7 @@ const championsList: ChampionsList = [
     name: 'Koga',
     role_id: 3,
     img_path: 'images/champions/koga.jpeg',
+    role: ChampionRole.FLANK,
     dominant_color: '#474b52',
   },
 ];
