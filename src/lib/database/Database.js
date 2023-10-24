@@ -115,7 +115,7 @@ class Database {
 
   getAllChampions(reversed) {
     return new Promise((resolve, reject) => {
-      this.db.all(`SELECT * FROM champions ${reversed ? 'ORDER BY id DESC' : ''}`, (err, rows) => {
+      this.db.all(`SELECT * FROM champions_view ${reversed ? 'ORDER BY id DESC' : ''}`, (err, rows) => {
         if (err) {
           reject(err);
         } else {
