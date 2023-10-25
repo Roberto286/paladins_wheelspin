@@ -13,12 +13,10 @@ function WheelStructure() {
   const [displayedValue, setDisplayedValue] = useState<IChampion>();
   const [champions, setChampions] = useState<IChampion[]>([]);
   const [slice, setSlice] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const wheelStyle = { transform: `rotate(${rotationAngle}deg)` };
 
   const fetchData = async () => {
     const allChampions = await getAllChampions();
-    setIsLoading(false);
     setChampions(allChampions);
     setSlice(sliceCalc(allChampions.length));
   };
@@ -54,42 +52,39 @@ function WheelStructure() {
   ));
 
   return (
-    <div className="container">
-      <h1>Paladins wheel of fortune</h1>
-      <div className="board">
-        {isLoading ? (
-          <LoaderComponent />
-        ) : (
-          <>
-            <div className="spinner-table">
-              <div
-                className={`dial ${clicked ? 'spinning' : ''}`}
-                style={wheelStyle}
-              >
-                <div className="dial-before">
-                  <WheelButton
-                    event={startRotation}
-                    isDisabled={clicked}
-                  />
-                </div>
-                {slicesArray}
+    <>
+      <LoaderComponent />
+      <div className="container">
+        <h1>Paladins wheel of fortune</h1>
+        <div className="board">
+          <div className="spinner-table">
+            <div
+              className={`dial ${clicked ? 'spinning' : ''}`}
+              style={wheelStyle}
+            >
+              <div className="dial-before">
+                <WheelButton
+                  event={startRotation}
+                  isDisabled={clicked}
+                />
               </div>
+              {slicesArray}
             </div>
-            <div className="arrow">
-              <span className="pointer" />
-            </div>
-          </>
-        )}
+          </div>
+          <div className="arrow">
+            <span className="pointer" />
+          </div>
+        </div>
+        <div className="display-container">
+          {displayedValue ? (
+            <>
+              <span className="display-value">{`${displayedValue.name} won!`}</span>
+              <span className="display-value" /> {/* Add the image here */}
+            </>
+          ) : null}
+        </div>
       </div>
-      <div className="display-container">
-        {displayedValue ? (
-          <>
-            <span className="display-value">{`${displayedValue.name} won!`}</span>
-            <span className="display-value" /> {/* Add the image here */}
-          </>
-        ) : null}
-      </div>
-    </div>
+    </>
   );
 }
 

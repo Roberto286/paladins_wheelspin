@@ -13,11 +13,14 @@ const axiosConfig = {
 const AXIOS = axios.create(axiosConfig);
 
 const fetchAndHandleErrors = async <T>(url: string, errorMessage: string): Promise<T> => {
+  document.querySelector('.lds-container')?.classList.replace('hide', 'visible');
   try {
     const response = await AXIOS.get<T>(url);
     return response.data;
   } catch (error) {
     throw new Error(errorMessage);
+  } finally {
+    document.querySelector('.lds-container')?.classList.replace('visible', 'hide');
   }
 };
 
