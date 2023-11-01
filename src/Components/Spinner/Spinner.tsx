@@ -1,6 +1,6 @@
-import './LoaderComponent.scss';
+import './Spinner.scss';
 
-function LoaderComponent() {
+function Spinner() {
   return (
     <div className="lds-container hide">
       <div className="lds-ring">
@@ -12,4 +12,4 @@ function LoaderComponent() {
     </div>
   );
 }
-export default LoaderComponent;
+export default Spinner;

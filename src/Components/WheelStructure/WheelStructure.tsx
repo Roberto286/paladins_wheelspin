@@ -5,7 +5,6 @@ import './WheelStructure.scss';
 import { getRandomAngle, sliceCalc, wheelRadius } from '../../Utils/Utils';
 import { Champion } from '../../interfaces/Champion';
 import { getAllChampions, getRandomChamp } from '../../network/endpointCalls';
-import LoaderComponent from '../LoaderComponent/LoaderComponent';
 
 function WheelStructure() {
   const [clicked, setClicked] = useState(false);
@@ -52,39 +51,36 @@ function WheelStructure() {
   ));
 
   return (
-    <>
-      <LoaderComponent />
-      <div className="container">
-        <h1>Paladins wheel of fortune</h1>
-        <div className="board">
-          <div className="spinner-table">
-            <div
-              className={`dial ${clicked ? 'spinning' : ''}`}
-              style={wheelStyle}
-            >
-              <div className="dial-before">
-                <WheelButton
-                  event={startRotation}
-                  isDisabled={clicked}
-                />
-              </div>
-              {slicesArray}
+    <div className="container">
+      <h1>Paladins wheel of fortune</h1>
+      <div className="board">
+        <div className="spinner-table">
+          <div
+            className={`dial ${clicked ? 'spinning' : ''}`}
+            style={wheelStyle}
+          >
+            <div className="dial-before">
+              <WheelButton
+                event={startRotation}
+                isDisabled={clicked}
+              />
             </div>
-          </div>
-          <div className="arrow">
-            <span className="pointer" />
+            {slicesArray}
           </div>
         </div>
-        <div className="display-container">
-          {displayedValue ? (
-            <>
-              <span className="display-value">{`${displayedValue.name} won!`}</span>
-              <span className="display-value" /> {/* Add the image here */}
-            </>
-          ) : null}
+        <div className="arrow">
+          <span className="pointer" />
         </div>
       </div>
-    </>
+      <div className="display-container">
+        {displayedValue ? (
+          <>
+            <span className="display-value">{`${displayedValue.name} won!`}</span>
+            <span className="display-value" /> {/* Add the image here */}
+          </>
+        ) : null}
+      </div>
+    </div>
   );
 }
 
