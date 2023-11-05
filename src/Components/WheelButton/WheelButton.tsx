@@ -1,9 +1,6 @@
 import './WheelButton.scss';
+import WheelButtonProps from './types';
 
-type WheelButtonProps = {
-  event: () => void;
-  isDisabled: boolean;
-};
 function WheelButton({ event, isDisabled }: WheelButtonProps) {
   const handleButtonClick = () => {
     if (!isDisabled) {

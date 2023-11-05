@@ -1,10 +1,6 @@
 import './WheelSlice.scss';
+import WheelSliceProps from './types';
 
-type WheelSliceProps = {
-  championName: string;
-  sliceHeight: number;
-  color: string;
-};
 function WheelSlice({ championName, sliceHeight, color }: WheelSliceProps) {
   return (
     <div
