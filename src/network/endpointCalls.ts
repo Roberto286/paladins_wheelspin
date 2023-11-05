@@ -3,19 +3,13 @@ import http from 'http';
 import { Champion } from '../interfaces/Champion';
 import urls from './championsUrls';
 
-const showLoadingSpinner = () => {
+const isLoaderVisible = (v: boolean) => {
   const ldsContainer = document.querySelector('.lds-container');
   if (ldsContainer) {
-    ldsContainer.classList.remove('hide');
+    ldsContainer.classList.toggle('hide', !v);
   }
 };
 
-const hideLoadingSpinner = () => {
-  const ldsContainer = document.querySelector('.lds-container');
-  if (ldsContainer) {
-    ldsContainer.classList.add('hide');
-  }
-};
 const backendAuthCredential: string = import.meta.env?.VITE_BACKEND_AUTH || '';
 const axiosConfig: AxiosRequestConfig = {
   withCredentials: true,
@@ -27,12 +21,12 @@ const axiosConfig: AxiosRequestConfig = {
 const Axios: AxiosInstance = axios.create(axiosConfig);
 
 Axios.interceptors.request.use(config => {
-  showLoadingSpinner();
+  isLoaderVisible(true);
   return config;
 });
 
 Axios.interceptors.response.use(response => {
-  hideLoadingSpinner();
+  isLoaderVisible(false);
   return response;
 });
 
