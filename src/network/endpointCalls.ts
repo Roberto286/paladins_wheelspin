@@ -3,6 +3,13 @@ import http from 'http';
 import { Champion } from '../interfaces/Champion';
 import urls from './championsUrls';
 
+const isLoaderVisible = (v: boolean) => {
+  const ldsContainer = document.querySelector('.lds-container');
+  if (ldsContainer) {
+    ldsContainer.classList.toggle('hide', !v);
+  }
+};
+
 const backendAuthCredential: string = import.meta.env?.VITE_BACKEND_AUTH || '';
 const axiosConfig: AxiosRequestConfig = {
   withCredentials: true,
@@ -11,10 +18,19 @@ const axiosConfig: AxiosRequestConfig = {
     Authorization: `Basic ${backendAuthCredential}`,
   },
 };
+const Axios: AxiosInstance = axios.create(axiosConfig);
 
-const AXIOS: AxiosInstance = axios.create(axiosConfig);
+Axios.interceptors.request.use(config => {
+  isLoaderVisible(true);
+  return config;
+});
 
-AXIOS.interceptors.response.use(
+Axios.interceptors.response.use(response => {
+  isLoaderVisible(false);
+  return response;
+});
+
+Axios.interceptors.response.use(
   response => response.data,
   error => {
     // TODO: Show an alert with the error message instead of throwing an error
@@ -23,7 +39,7 @@ AXIOS.interceptors.response.use(
 );
 
 const makeRequest = async <T>(url: string): Promise<T> => {
-  const response: T = await AXIOS.get(url);
+  const response: T = await Axios.get(url);
   return response;
 };
 

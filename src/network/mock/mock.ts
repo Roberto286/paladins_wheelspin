@@ -54,7 +54,7 @@ export default [
     response: getChampions,
   },
   {
-    url: '/random',
+    url: '/champions/random',
     method: 'get',
     response: getRandomChampion,
   },

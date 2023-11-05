@@ -12,7 +12,6 @@ function WheelStructure() {
   const [displayedValue, setDisplayedValue] = useState<Champion>();
   const [champions, setChampions] = useState<Champion[]>([]);
   const [slice, setSlice] = useState(0);
-
   const wheelStyle = { transform: `rotate(${rotationAngle}deg)` };
 
   const fetchData = async () => {
