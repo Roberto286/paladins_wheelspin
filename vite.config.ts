@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { viteMockServe } from 'vite-plugin-mock';
 import { ProxyConfig } from './src/interfaces/ProxyConfig';
-import urls from './src/network/championsUrls';
+import urls from './src/network/urls/championsUrls';
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
