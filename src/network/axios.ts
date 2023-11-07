@@ -1,6 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import http from 'http';
 import isLoaderVisible from '../Components/Spinner/methods';
+import { showNotification } from '../Utils/Utils';
+import NotificationType from '../enums/NotificationType.enum';
 
 const backendAuthCredential: string = import.meta.env?.VITE_BACKEND_AUTH || '';
 const axiosConfig: AxiosRequestConfig = {
@@ -23,8 +25,8 @@ Axios.interceptors.response.use(
     return response.data;
   },
   error => {
-    // TODO: Show an alert with the error message instead of throwing an error
-    throw new Error(error);
+    isLoaderVisible(false);
+    showNotification('Error', error.message, NotificationType.DANGER);
   }
 );
 
