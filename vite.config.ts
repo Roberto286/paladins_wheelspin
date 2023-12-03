@@ -6,11 +6,11 @@ import { ProxyConfig } from './src/interfaces/ProxyConfig';
 import urls from './src/network/championsUrls';
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
+export default ({ mode }: { mode: string }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   const isMockEnabled = process.env?.VITE_USE_MOCK === 'true';
   const backendBase = process.env?.VITE_BACKEND_API || '';
-  const proxyConfig: ProxyConfig = Object.entries(urls).reduce((acc, [_, value]) => {
+  const proxyConfig: ProxyConfig = Object.entries(urls).reduce<Record<string, object>>((acc, [_, value]) => {
     acc[value] = {
       target: backendBase,
       changeOrigin: true,
