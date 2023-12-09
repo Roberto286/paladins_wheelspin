@@ -31,11 +31,11 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -t rsa ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          
+
       - name: SSH Login and deploy
         run: |
           echo "deploying..."
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /$USER/repos/paladins_wheelspin/ && git pull && rm -rf node_modules package-lock.json && npm install && npm run build"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /${{ secrets.SSH_USER }}/repos/paladins_wheelspin/ && git pull && rm -rf node_modules package-lock.json && npm install && npm run build"
           echo "deployed"
 
         env:
