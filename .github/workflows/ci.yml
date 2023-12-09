@@ -35,7 +35,7 @@ jobs:
       - name: SSH Login and deploy
         run: |
           echo "deploying..."
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /${{ secrets.SSH_USER }}/repos/paladins_wheelspin/ && git pull && rm -rf node_modules package-lock.json && npm install && npm run build && sudo mv /{{ secrets.SSH_HOST }}/repos/paladins_wheelspin/dist /var/www/paladins_wheelspin"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd /${{ secrets.SSH_USER }}/repos/paladins_wheelspin/ && git pull && rm -rf node_modules package-lock.json && npm install && npm run build && sudo mv /${{ secrets.SSH_HOST }}/repos/paladins_wheelspin/dist /var/www/paladins_wheelspin"
           echo "deployed"
 
         env:
