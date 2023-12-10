@@ -1,9 +1,15 @@
 @import '../../assets/saasConfig.scss';
-button {
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
-  &:hover {
-    cursor: pointer;
+
+.content-container {
+  .pre {
+    button {
+      height: 100%;
+      width: 100%;
+      border-radius: 50%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
