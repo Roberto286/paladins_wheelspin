@@ -8,7 +8,7 @@ const database = new Database(databaseFilePath);
 
 async function getRandomChampion(req, res) {
   try {
-    const roles = Array.isArray(req.query.roles) && req.query.roles.length ? req.query.roles : [];
+    const roles = Array.isArray(req.query.roles) ? req.query.roles : [req.query.roles].filter(Boolean);
     const randomChampion = await database.getRandomChampion(roles);
     const champServerImgPath = path.join(staticFolder, randomChampion.img_path);
     const dominantColor = await getColor(champServerImgPath);
@@ -23,7 +23,7 @@ async function getRandomChampion(req, res) {
 async function getAllChampions(req, res) {
   try {
     const reversed = req.query.reversed === 'true';
-    const roles = Array.isArray(req.query.roles) && req.query.roles.length ? req.query.roles : [];
+    const roles = Array.isArray(req.query.roles) ? req.query.roles : [req.query.roles].filter(Boolean);
     const champions = roles.length
       ? await database.getChampionsByRoles(roles, reversed)
       : await database.getAllChampions(reversed);
