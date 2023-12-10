@@ -4,7 +4,9 @@ import makeRequest from './axios';
 
 export const getAllChampions = (): Promise<Champion[]> => {
   const { getAllChampionsURLReversed: url } = urls;
-  return makeRequest<Champion[]>(String(url));
+  const customErrorMessage =
+    "Non è stato possibile raggiungere il server pertanto l'applicazione non è disponibile. Si prega di riprovare più tardi";
+  return makeRequest<Champion[]>(String(url), customErrorMessage);
 };
 
 export const getRandomChamp = (): Promise<Champion> => {

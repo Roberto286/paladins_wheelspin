@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import http from 'http';
 import isLoaderVisible from '../Components/Spinner/methods';
 import { showNotification } from '../Utils/Utils';
@@ -14,25 +14,17 @@ const axiosConfig: AxiosRequestConfig = {
 };
 const Axios: AxiosInstance = axios.create(axiosConfig);
 
-Axios.interceptors.request.use(config => {
+const makeRequest = async <T>(url: string, customErrorMessage?: string): Promise<T> => {
   isLoaderVisible(true);
-  return config;
-});
-
-Axios.interceptors.response.use(
-  response => {
-    isLoaderVisible(false);
+  try {
+    const response: AxiosResponse<T> = await Axios.get<T>(url);
     return response.data;
-  },
-  error => {
+  } catch (error) {
+    showNotification('Error', customErrorMessage || (error as Error).message, NotificationType.DANGER);
+    throw error;
+  } finally {
     isLoaderVisible(false);
-    showNotification('Error', error.message, NotificationType.DANGER);
   }
-);
-
-const makeRequest = async <T>(url: string): Promise<T> => {
-  const response: T = await Axios.get(url);
-  return response;
 };
 
 export default makeRequest;
