@@ -12,7 +12,7 @@ export default ({ mode }: { mode: string }) => {
   const backendBase = process.env?.VITE_BACKEND_API || '';
   const proxyConfig: ProxyConfig = Object.entries(urls).reduce<Record<string, object>>((acc, [_, value]) => {
     acc[value] = {
-      target: backendBase,
+      target: `${backendBase}/api`,
       changeOrigin: true,
     };
     return acc;
