@@ -17,7 +17,7 @@ const apiRouter = express.Router();
 
 // Configure CORS
 const corsOptions = {
-  origin: 'https://paladinswheelspin.com', // Specify your domain
+  origin: 'http://paladinswheelspin.com', // Specify your domain
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true, // Allow credentials if needed
 };
@@ -27,10 +27,10 @@ app.use(cors(corsOptions));
 const cspOptions = {
   directives: {
     defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", "'unsafe-inline'", 'https://paladinswheelspin.com'],
-    styleSrc: ["'self'", "'unsafe-inline'", 'https://paladinswheelspin.com'],
-    imgSrc: ["'self'", 'data:', 'https://paladinswheelspin.com'],
-    connectSrc: ["'self'", 'https://paladinswheelspin.com'],
+    scriptSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
+    imgSrc: ["'self'", 'data:', 'http://paladinswheelspin.com'],
+    connectSrc: ["'self'", 'http://paladinswheelspin.com'],
     upgradeInsecureRequests: null,
   },
 };
