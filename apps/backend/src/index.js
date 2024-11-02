@@ -31,6 +31,7 @@ const cspOptions = {
     styleSrc: ["'self'", "'unsafe-inline'", 'https://paladinswheelspin.com'],
     imgSrc: ["'self'", 'data:', 'https://paladinswheelspin.com'],
     connectSrc: ["'self'", 'https://paladinswheelspin.com'],
+    upgradeInsecureRequests: null,
   },
 };
 app.use(helmet.contentSecurityPolicy(cspOptions));
