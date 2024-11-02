@@ -3,7 +3,7 @@ name: Deploy Paladins Wheelspin
 on:
   push:
     branches:
-      - main  # Trigger on push to main branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -37,13 +37,13 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             # Pull the latest Docker image
-            docker pull yourusername/yourapp:latest
+            docker pull paladins_wheelspin:latest
             
             # Stop and remove the old container if it exists
-            docker rm -f nodejs-app || true
+            docker rm -f paladins_wheelspin || true
             
             # Run the container with updated environment variables
-            docker run -d --name nodejs-app -p 80:3000 \
+            docker run -d --name paladins_wheelspin -p 80:6789 \
               -e VITE_BASIC_AUTH_USERNAME=${{ secrets.BA_USER }} \
               -e VITE_BASIC_AUTH_PASSWORD=${{ secrets.BA_PWD }} \
               paladins_wheelspin:latest
