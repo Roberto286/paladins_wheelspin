@@ -40,7 +40,7 @@ jobs:
             docker pull ${{ secrets.DOCKER_USERNAME }}/paladins_wheelspin:latest
             
             # Stop and remove the old container if it exists
-            docker rm -f paladins_wheelspin || true
+            docker rm -f paladins_wheelspin:latest || true
             
             # Run the container with updated environment variables
             docker run -d --name paladins_wheelspin -p 80:6789 \
