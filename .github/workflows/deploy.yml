@@ -37,7 +37,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             # Pull the latest Docker image
-            docker pull paladins_wheelspin:latest
+            docker pull ${{ secrets.DOCKER_USERNAME }}/paladins_wheelspin:latest
             
             # Stop and remove the old container if it exists
             docker rm -f paladins_wheelspin || true
