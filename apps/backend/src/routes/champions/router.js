@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import { getAllChampions, getRandomChampion } from './methods.js';
+const { Router } = require('express');
+const { getAllChampions, getRandomChampion } = require('./methods');
 
 const router = Router();
 
@@ -7,4 +7,4 @@ router.get('/', getAllChampions);
 
 router.get('/random', getRandomChampion);
 
-export default router;
+module.exports = router;

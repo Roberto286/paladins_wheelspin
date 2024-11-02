@@ -1,10 +1,10 @@
-import { readFileSync } from 'node:fs';
-import sqlite from 'sqlite3';
+const { readFileSync } = require('node:fs');
+const sqlite = require('sqlite3');
 
 const sqlite3 = sqlite.verbose();
-const initDbScriptPath = process.env.INIT_DB_SCRIPT_PATH || '';
+const initDbScriptPath = 'src/lib/database/tables_schema.sql';
 
-export class Database {
+class Database {
   constructor(dbFilePath) {
     if (Database.instance) {
       return Database.instance;
@@ -166,3 +166,5 @@ export class Database {
     });
   }
 }
+
+module.exports = { Database };

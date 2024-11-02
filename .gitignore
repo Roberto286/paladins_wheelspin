@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .env
+.turbo
+vite.config.ts.*
 
 # Editor directories and files
 .vscode/*

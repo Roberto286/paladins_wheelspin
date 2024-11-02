@@ -2,18 +2,38 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
   "scripts": {
     "dev": "node --watch-path=src --env-file=../../.env ./src/index.js",
     "start": "node --env-file=../../.env ./src/index.js",
-    "clean-db": "rimraf ./src/lib/database/data.db"
+    "start:prod": "node ./dist/main.js",
+    "clean-db": "rimraf ./src/lib/database/data.db",
+    "build": "webpack build --progress"
   },
   "keywords": [],
   "author": "Roberto286",
   "license": "LGPL-3.0-or-later",
   "devDependencies": {
-    "rimraf": "^5.0.5"
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "assert": "^2.0.0",
+    "babel-loader": "^9.2.1",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.1",
+    "events": "^3.1.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "querystring-es3": "^0.2.1",
+    "rimraf": "^5.0.5",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.1.0",
+    "string_decoder": "^1.3.0",
+    "url": "^0.11.0",
+    "util": "^0.12.5",
+    "vm-browserify": "^1.1.2",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

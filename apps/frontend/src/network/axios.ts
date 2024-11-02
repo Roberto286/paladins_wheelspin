@@ -4,7 +4,12 @@ import isLoaderVisible from '../Components/Spinner/methods';
 import { showNotification } from '../Utils/Utils';
 import NotificationType from '../enums/NotificationType.enum';
 
-const backendAuthCredential: string = import.meta.env?.VITE_BACKEND_AUTH || '';
+const basicAuthUsername: string = import.meta.env.VITE_BASIC_AUTH_USERNAME;
+const basicAuthPassword: string = import.meta.env.VITE_BASIC_AUTH_PASSWORD;
+
+const backendAuthCredential: string = btoa(
+  `${basicAuthUsername}:${basicAuthPassword}`,
+);
 const axiosConfig: AxiosRequestConfig = {
   withCredentials: true,
   httpAgent: new http.Agent({ keepAlive: true }),

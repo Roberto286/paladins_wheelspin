@@ -12,8 +12,8 @@ export default ({ mode }: { mode: string }): UserConfig => {
     ...process.env,
     ...loadEnv(mode, path.join(process.cwd(), '..', '..')),
   };
-  const isMockEnabled = process.env?.VITE_USE_MOCK === 'true';
-  const backendBase = process.env?.VITE_BACKEND_API || '';
+  const isMockEnabled = false;
+  const backendBase = 'http://localhost:6789';
   const proxyConfig: ProxyConfig = Object.entries(urls).reduce<
     Record<string, object>
   >((acc, [_, value]) => {

@@ -1,14 +1,15 @@
-import path from 'path';
-import * as colorThief from 'colorthief';
-import { Database } from '../../lib/database/Database.js';
-import { rgbToHex } from '../../lib/utility.js';
+const path = require('path');
+const ColorThief = require('colorthief');
+const { Database } = require('../../lib/database/Database');
+const rgbToHex = require('../../lib/utility');
 
-const databaseFilePath = process.env.DATABASE_FILE_PATH || '';
-const staticFolder = process.env.STATIC_FOLDER || '';
+const databaseFilePath = 'src/lib/database/data.db';
+const staticFolder = 'src/resources';
 const database = new Database(databaseFilePath);
-const { getColor } = colorThief;
 
-export async function getRandomChampion(req, res) {
+const { getColor } = ColorThief;
+
+async function getRandomChampion(req, res) {
   try {
     const roles = Array.isArray(req.query.roles)
       ? req.query.roles
@@ -28,7 +29,7 @@ export async function getRandomChampion(req, res) {
   }
 }
 
-export async function getAllChampions(req, res) {
+async function getAllChampions(req, res) {
   try {
     const reversed = req.query.reversed === 'true';
     const roles = Array.isArray(req.query.roles)
@@ -61,3 +62,8 @@ export async function getAllChampions(req, res) {
     res.status(500).send('Internal Server Error');
   }
 }
+
+module.exports = {
+  getRandomChampion,
+  getAllChampions,
+};

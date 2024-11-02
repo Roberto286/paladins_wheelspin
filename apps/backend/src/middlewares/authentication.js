@@ -1,7 +1,7 @@
-const basicAuthUsername = process.env.BASIC_AUTH_USERNAME;
-const basicAuthPassword = process.env.BASIC_AUTH_PASSWORD;
+const basicAuthUsername = process.env.VITE_BASIC_AUTH_USERNAME;
+const basicAuthPassword = process.env.VITE_BASIC_AUTH_PASSWORD;
 
-export function checkAuthorization(req, res, next) {
+function checkAuthorization(req, res, next) {
   const handleUserNotAuthorized = () => {
     const err = new Error('Unauthorized');
 
@@ -26,3 +26,4 @@ export function checkAuthorization(req, res, next) {
   res.status(200);
   next();
 }
+module.exports = checkAuthorization;

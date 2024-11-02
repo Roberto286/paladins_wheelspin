@@ -1,13 +1,15 @@
 {
   "name": "paladins_wheelspin",
   "version": "1.0.0",
+  "packageManager": "pnpm@8.14.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "turbo run dev",
     "start": "turbo run start",
+    "start:prod": "no",
     "build": "turbo run build",
-    "prepare": "lefthook install"
+    "prepare": "if [ \"$NODE_ENV\" != \"prod\" ]; then lefthook install & turbo telemetry disable; fi"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-conventional": "^18.6.3",
     "lefthook": "^1.8.2",
+    "syncpack": "^13.0.0",
     "turbo": "^2.2.3"
   }
 }
