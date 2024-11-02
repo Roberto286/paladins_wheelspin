@@ -36,5 +36,6 @@ export default ({ mode }: { mode: string }): UserConfig => {
     server: {
       proxy: proxyConfig,
     },
+    base: '/',
   });
 };
