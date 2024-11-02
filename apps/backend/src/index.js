@@ -19,8 +19,22 @@ app.use(helmet());
 app.use(cors());
 app.use(urlencoded({ extended: false }));
 app.use(bodyParser.json());
-apiRouter.use(express.static(staticFolder));
-app.use(express.static(FE_DIST));
+apiRouter.use(
+  express.static(staticFolder, {
+    setHeaders: (res) => {
+      res.set('Cross-Origin-Opener-Policy', 'same-site');
+      res.set('Cross-Origin-Embedder-Policy', 'require-corp');
+    },
+  }),
+);
+app.use(
+  express.static(FE_DIST, {
+    setHeaders: (res) => {
+      res.set('Cross-Origin-Opener-Policy', 'same-site');
+      res.set('Cross-Origin-Embedder-Policy', 'require-corp');
+    },
+  }),
+);
 apiRouter.use(checkAuthorization);
 
 apiRouter.get('/ping', (_, res) => {
