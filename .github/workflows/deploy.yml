@@ -3,7 +3,7 @@ name: Deploy Paladins Wheelspin
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
