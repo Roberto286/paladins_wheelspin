@@ -15,11 +15,33 @@ const indexHtmlPath = path.join(FE_DIST, 'index.html');
 
 const apiRouter = express.Router();
 
+// Configure CORS
+const corsOptions = {
+  origin: 'https://paladinswheelspin.com', // Specify your domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true, // Allow credentials if needed
+};
+app.use(cors(corsOptions));
+
+// Configure Helmet for security
+const cspOptions = {
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'", 'https://paladinswheelspin.com'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'https://paladinswheelspin.com'],
+    imgSrc: ["'self'", 'data:', 'https://paladinswheelspin.com'],
+    connectSrc: ["'self'", 'https://paladinswheelspin.com'],
+  },
+};
+app.use(helmet.contentSecurityPolicy(cspOptions));
 app.use(helmet());
-app.use(cors());
+
+// Body parser middleware
 app.use(urlencoded({ extended: false }));
 app.use(bodyParser.json());
-apiRouter.use(
+
+// Static file serving
+app.use(
   express.static(staticFolder, {
     setHeaders: (res) => {
       res.set('Cross-Origin-Opener-Policy', 'same-site');
@@ -35,18 +57,18 @@ app.use(
     },
   }),
 );
-apiRouter.use(checkAuthorization);
 
+// API router middleware
+apiRouter.use(checkAuthorization);
 apiRouter.get('/ping', (_, res) => {
   res.send('OK');
 });
-
 apiRouter.use('/champions', championsRouter);
 
 // API routes
 app.use('/api', apiRouter);
 
-// Catch-all route for unhandled API requests
+// Catch-all for API requests
 app.all('/api/*', (_, res) => {
   res.status(404).json({ error: 'API route not found' });
 });
@@ -56,6 +78,7 @@ app.get('*', (_, res) => {
   res.sendFile(indexHtmlPath);
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
