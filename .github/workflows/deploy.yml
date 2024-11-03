@@ -43,7 +43,7 @@ jobs:
             docker rm -f paladins_wheelspin || true
             
             # Run the container with updated environment variables
-            docker run -d --name paladins_wheelspin \
+            docker run -d --name paladins_wheelspin -p 6789:6789 \
               -e VITE_BASIC_AUTH_USERNAME=${{ secrets.BA_USER }} \
               -e VITE_BASIC_AUTH_PASSWORD=${{ secrets.BA_PWD }} \
               ${{ secrets.DOCKER_USERNAME }}/paladins_wheelspin:latest
