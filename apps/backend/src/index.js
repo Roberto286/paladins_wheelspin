@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { urlencoded } = express;
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const checkAuthorization = require('./middlewares/authentication');
 const championsRouter = require('./routes/champions/router');
 const path = require('node:path');
@@ -24,18 +24,18 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Configure Helmet for security
-const cspOptions = {
-  directives: {
-    defaultSrc: ["'self'"],
-    scriptSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
-    styleSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
-    imgSrc: ["'self'", 'data:', 'http://paladinswheelspin.com'],
-    connectSrc: ["'self'", 'http://paladinswheelspin.com'],
-    upgradeInsecureRequests: null,
-  },
-};
-app.use(helmet.contentSecurityPolicy(cspOptions));
-app.use(helmet({ hsts: false }));
+// const cspOptions = {
+//   directives: {
+//     defaultSrc: ["'self'"],
+//     scriptSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
+//     styleSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
+//     imgSrc: ["'self'", 'data:', 'http://paladinswheelspin.com'],
+//     connectSrc: ["'self'", 'http://paladinswheelspin.com'],
+//     upgradeInsecureRequests: null,
+//   },
+// };
+// app.use(helmet.contentSecurityPolicy(cspOptions));
+// app.use(helmet({ hsts: false }));
 
 // Body parser middleware
 app.use(urlencoded({ extended: false }));
