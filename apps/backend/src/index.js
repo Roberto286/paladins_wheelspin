@@ -2,8 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { urlencoded } = express;
-// const helmet = require('helmet');
-const checkAuthorization = require('./middlewares/authentication');
 const championsRouter = require('./routes/champions/router');
 const path = require('node:path');
 
@@ -15,27 +13,7 @@ const indexHtmlPath = path.join(FE_DIST, 'index.html');
 
 const apiRouter = express.Router();
 
-// Configure CORS
-const corsOptions = {
-  origin: 'http://paladinswheelspin.com', // Specify your domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true, // Allow credentials if needed
-};
-app.use(cors(corsOptions));
-
-// Configure Helmet for security
-// const cspOptions = {
-//   directives: {
-//     defaultSrc: ["'self'"],
-//     scriptSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
-//     styleSrc: ["'self'", "'unsafe-inline'", 'http://paladinswheelspin.com'],
-//     imgSrc: ["'self'", 'data:', 'http://paladinswheelspin.com'],
-//     connectSrc: ["'self'", 'http://paladinswheelspin.com'],
-//     upgradeInsecureRequests: null,
-//   },
-// };
-// app.use(helmet.contentSecurityPolicy(cspOptions));
-// app.use(helmet({ hsts: false }));
+app.use(cors());
 
 // Body parser middleware
 app.use(urlencoded({ extended: false }));
@@ -60,7 +38,6 @@ app.use(
 );
 
 // API router middleware
-apiRouter.use(checkAuthorization);
 apiRouter.get('/ping', (_, res) => {
   res.send('OK');
 });
@@ -80,6 +57,6 @@ app.get('*', (_, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(port, '127.0.0.1', () => {
   console.log(`Listening on port ${port}`);
 });
